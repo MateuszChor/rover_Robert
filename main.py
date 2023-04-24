@@ -34,6 +34,7 @@ pwn_mode.start(25)
 while True:
 
     if keyboard.is_pressed('w'):
+        print("w is pressed")
         GPIO.setup(in1, GPIO.HIGH)
         GPIO.setup(in2, GPIO.LOW)
         GPIO.setup(in3, GPIO.HIGH)
@@ -41,6 +42,7 @@ while True:
         break
 
     if keyboard.is_pressed('s'):
+        print("s is pressed")
         GPIO.setup(in1, GPIO.LOW)
         GPIO.setup(in2, GPIO.HIGH)
         GPIO.setup(in3, GPIO.LOW)
