@@ -1,5 +1,37 @@
 import RPi.GPIO as GPIO
-import keyboard
+
+from evdev import InputDevice, categorize, ecodes
+
+# Object store input data
+gamepad = InputDevice('/dev/input/event1')
+
+# Przypisz kody klawiszy do zmiennych
+button_code = {
+    304: "Triangle",
+    305: "Circle",
+    306: "Cross",
+    307: "Square",
+    308: "Left bumper",
+    309: "Right bumper",
+    310: "Left trigger",
+    311: "Right trigger",
+    314: "Select",
+    315: "Start",
+    316: "Left stick button",
+    317: "Right stick button",
+    318: "PlayStation button",
+    319: "Touchpad button"
+}
+
+# Przypisz kody osi analogowych do zmiennych
+axis_code = {
+    0: "Left stick horizontal",
+    1: "Left stick vertical",
+    2: "Right stick horizontal",
+    3: "Right stick vertical",
+    16: "DPad horizontal",
+    17: "DPad vertical"
+}
 
 GPIO.setwarnings(False)
 
@@ -31,20 +63,28 @@ pwn_mode = GPIO.PWM(en, 1000)
 
 pwn_mode.start(25)
 
-while True:
 
-    if keyboard.is_pressed('w'):
-        print("w is pressed")
-        GPIO.setup(in1, GPIO.HIGH)
-        GPIO.setup(in2, GPIO.LOW)
-        GPIO.setup(in3, GPIO.HIGH)
-        GPIO.setup(in4, GPIO.LOW)
-        break
+for event in gamepad.read_loop():
+    # Odczytaj dane typu "key" lub "absolute"
+    if event.type == ecodes.EV_KEY or event.type == ecodes.EV_ABS:
+        # Konwertuj kod klawisza na jego nazwę
+        if event.code in button_code:
+            button_name = button_code[event.code]
 
-    if keyboard.is_pressed('s'):
-        print("s is pressed")
-        GPIO.setup(in1, GPIO.LOW)
-        GPIO.setup(in2, GPIO.HIGH)
-        GPIO.setup(in3, GPIO.LOW)
-        GPIO.setup(in4, GPIO.HIGH)
-        break
+            print(button_name + " " + ("pressed" if event.value else "released"))
+
+
+        elif event.code in axis_code:
+            axis_name = axis_code[event.code]
+
+            if axis_name == "Right stick horizontal" and event.value == 255:
+                GPIO.setup(in1, GPIO.HIGH)
+                GPIO.setup(in3, GPIO.HIGH)
+
+            if axis_name == "Right stick horizontal" and event.value == 0:
+                GPIO.setup(in1, GPIO.LOW)
+                GPIO.setup(in3, GPIO.LOW)
+
+
+
+
