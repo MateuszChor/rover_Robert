@@ -7,6 +7,7 @@ from controll_motors import motor
 # 16.16
 # power battery 10.77 V
 
+
 from evdev import InputDevice, categorize, ecodes
 
 # Object store input data
@@ -75,17 +76,32 @@ for event in gamepad.read_loop():
             if axis_name == "Left stick vertical":
 
                 value = motor.pwm_speed(event.value)
-
-                if value < 46.0:
+                print(event.value)
+                if event.value < 120:
                     print("forward")
                     motor.forward()
 
-                elif value > 54:
+                elif event.value > 136:
                     print("backward")
                     motor.backward()
 
-                else:
-                    motor.stop()
+
+
+            if axis_name == "Left stick horizontal":
+
+                value = motor.pwm_speed(event.value)
+                print(event.value)
+                if event.value < 110:
+                    print("left")
+                    motor.turn_left()
+
+                elif event.value > 136:
+                    print("right")
+                    motor.turn_right()
+
+
+            else:
+                motor.stop()
 
             # if axis_name == "Left stick vertical" and event.value == 0:
             #     print("gora")

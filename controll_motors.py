@@ -41,6 +41,18 @@ class motor:
         GPIO.output(self.in3, GPIO.LOW)
         GPIO.output(self.in4, GPIO.HIGH)
 
+    def turn_right(self):
+        GPIO.output(self.in1, GPIO.HIGH)
+        GPIO.output(self.in2, GPIO.LOW)
+        GPIO.output(self.in3, GPIO.LOW)
+        GPIO.output(self.in4, GPIO.HIGH)
+
+    def turn_left(self):
+        GPIO.output(self.in1, GPIO.LOW)
+        GPIO.output(self.in2, GPIO.HIGH)
+        GPIO.output(self.in3, GPIO.HIGH)
+        GPIO.output(self.in4, GPIO.LOW)
+
     def stop(self):
         GPIO.output(self.in1, GPIO.LOW)
         GPIO.output(self.in2, GPIO.LOW)
