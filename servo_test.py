@@ -1,25 +1,32 @@
 import RPi.GPIO as GPIO
-from time import sleep
+import time
 
-# servo 1 16
-# servo 2 20
+servo_pin_1 = 27  # GPIO pin, na którym podłączono pierwszy serwomechanizm
+servo_pin_2 = 17  # GPIO pin, na którym podłączono drugi serwomechanizm
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servo_pin_1, GPIO.OUT)
+GPIO.setup(servo_pin_2, GPIO.OUT)
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(20, GPIO.OUT)
+servo_1 = GPIO.PWM(servo_pin_1, 50)  # Ustawienie częstotliwości sygnału PWM na 50 Hz
+servo_2 = GPIO.PWM(servo_pin_2, 50)
 
+servo_1.start(0)  # Uruchomienie sygnału PWM z wypełnieniem na poziomie 0%
+servo_2.start(0)
 
-pwm=GPIO.PWM(20, 50)
-pwm.start(0)
+try:
+    while True:
+        # Ustawienie kąta wychylenia serwomechanizmów w stopniach
+        servo_1.ChangeDutyCycle(2.5)  # 0 stopni
+        servo_2.ChangeDutyCycle(2.5)
+        time.sleep(1)
+        servo_1.ChangeDutyCycle(7.5)  # 90 stopni
+        servo_2.ChangeDutyCycle(7.5)
+        time.sleep(1)
+        servo_1.ChangeDutyCycle(12.5)  # 180 stopni
+        servo_2.ChangeDutyCycle(12.5)
+        time.sleep(1)
 
-
-pwm.ChangeDutyCycle(5) # left -90 deg position
-sleep(1)
-pwm.ChangeDutyCycle(7.5) # neutral position
-sleep(1)
-pwm.ChangeDutyCycle(10) # right +90 deg position
-sleep(1)
-
-pwm.stop()
-GPIO.cleanup()
-
-
+except KeyboardInterrupt:
+    servo_1.stop()  # Zatrzymanie sygnału PWM
+    servo_2.stop()
+    GPIO.cleanup()  # Zwolnienie zasobów GPIO
