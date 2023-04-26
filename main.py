@@ -86,69 +86,47 @@ for event in gamepad.read_loop():
             if button_name == "Cross" and event.value == 1:
                 print(" press")
                 if event.code in axis_code:
-                    if axis_name == "Right stick vertical":
-                        value = servo_17.pwm_speed(event.value)
-                        print(event.value)
-                        # TODO  make it simpler scale middle center
-                        if event.value < 110:
-                            print("left servo")
-                            servo_17.move_servo(value)
+                    servo_move(axis_code)
 
-                        elif event.value > 136:
-                            print("right servo")
-                            servo_17.move_servo(value)
+        elif button_name == "Cross" and event.value == 0:
+            print(" no press")
 
-                        else:
-                            servo_17.stop()
+            if event.code in axis_code:
+                axis_name = axis_code[event.code]
 
+                if axis_name == "Left stick vertical":
 
-            elif button_name == "Cross" and event.value == 0:
-                print(" no press")
+                    value = motor.pwm_speed(event.value)
+                    print(event.value)
+                    if event.value < 120:
+                        print("forward")
+                        motor.forward()
 
-        elif event.code in axis_code:
-            axis_name = axis_code[event.code]
+                    elif event.value > 136:
+                        print("backward")
+                        motor.backward()
 
-            if axis_name == "Left stick vertical":
-
-                value = motor.pwm_speed(event.value)
-                print(event.value)
-                if event.value < 120:
-                    print("forward")
-                    motor.forward()
-
-                elif event.value > 136:
-                    print("backward")
-                    motor.backward()
-
-                else:
-                    motor.stop()
+                    else:
+                        motor.stop()
 
 
 
-            if axis_name == "Right stick vertical":
+                if axis_name == "Right stick vertical":
 
-                value = motor.pwm_speed(event.value)
-                print(event.value)
-                if event.value < 110:
-                    print("left")
-                    motor.turn_left()
+                    value = motor.pwm_speed(event.value)
+                    print(event.value)
+                    if event.value < 110:
+                        print("left")
+                        motor.turn_left()
 
-                elif event.value > 136:
-                    print("right")
-                    motor.turn_right()
+                    elif event.value > 136:
+                        print("right")
+                        motor.turn_right()
 
-                else:
-                    motor.stop()
+                    else:
+                        motor.stop()
 
-            # if axis_name == "Left stick vertical" and event.value == 0:
-            #     print("gora")
-            #     GPIO.output(in1, GPIO.HIGH)
-            #     GPIO.output(in3, GPIO.HIGH)
-            #
-            # if axis_name == "Left stick vertical" and event.value == 255:
-            #     print("dol")
-            #     GPIO.output(in1, GPIO.LOW)
-            #     GPIO.output(in3, GPIO.LOW)
+
 
 
 
