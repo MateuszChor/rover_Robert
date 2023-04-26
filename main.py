@@ -76,7 +76,7 @@ for event in gamepad.read_loop():
             if axis_name == "Left stick vertical":
 
                 value = motor.pwm_speed(event.value)
-                print(event.value)
+                # print(event.value)
                 if event.value < 120:
                     print("forward")
                     motor.forward()
@@ -91,6 +91,8 @@ for event in gamepad.read_loop():
 
 
             elif axis_name == "Right stick horizontal":
+
+                print("Right stick horizontal")
 
                 value = motor.pwm_speed(event.value)
                 print(event.value)
