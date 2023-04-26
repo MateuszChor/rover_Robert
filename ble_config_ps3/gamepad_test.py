@@ -49,8 +49,9 @@ def all_position_print():
                 print(axis_name + " " + str(event.value))
 
                 # przykład na left analog gora dol 0 - 255  (środek 129-130)
-                if axis_name == "Left stick vertical":
+                if axis_name == "Right stick vertical":
                     # Wydrukuj nazwę osi analoga horizontal vertical
                     print(axis_name + " " + str(event.value))
 
 
+all_position_print()
