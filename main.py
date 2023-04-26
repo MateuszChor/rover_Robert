@@ -71,7 +71,7 @@ for event in gamepad.read_loop():
                 print(" press")
 
                 if axis_name == "Right stick vertical":
-                    value = servo_17.pwn_scale_servo(event.value)
+                    value = servo_17.pwm_speed(event.value)
                     print(event.value)
                     # TODO  make it simpler scale middle center
                     if event.value < 110:
