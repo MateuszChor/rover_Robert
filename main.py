@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from controll_motors import motor
-from controll_servo import servo_17
+from controll_servo import servo
 
 # 15.53
 # power battery 10.95 V
@@ -52,8 +52,9 @@ axis_code = {
 
 
 motor = motor()
-servo_17 = servo_17(17)
-servo_27 = servo_17(27)
+servo_17 = servo(17)
+servo_27 = servo(277)
+
 
 
 for event in gamepad.read_loop():

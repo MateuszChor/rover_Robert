@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 
-class servo_17:
+class servo:
 
     # TODO try to use pydantic to build class
 
