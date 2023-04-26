@@ -70,20 +70,20 @@ for event in gamepad.read_loop():
             if button_name == "Cross" and event.value == 1:
                 print(" press")
 
-                # if axis_name == "Right stick vertical":
-                #     value = servo_17.pwm_speed(event.value)
-                #     print(event.value)
-                #     # TODO  make it simpler scale middle center
-                #     if event.value < 110:
-                #         print("left servo")
-                #         servo_17.move_servo(value)
-                #
-                #     elif event.value > 136:
-                #         print("right servo")
-                #         servo_17.move_servo(value)
-                #
-                #     else:
-                #         servo_17.stop()
+                if axis_name == "Right stick vertical":
+                    value = servo_17.pwm_speed(event.value)
+                    print(event.value)
+                    # TODO  make it simpler scale middle center
+                    if event.value < 110:
+                        print("left servo")
+                        servo_17.move_servo(value)
+
+                    elif event.value > 136:
+                        print("right servo")
+                        servo_17.move_servo(value)
+
+                    else:
+                        servo_17.stop()
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
