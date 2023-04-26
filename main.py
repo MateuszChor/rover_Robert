@@ -53,7 +53,7 @@ axis_code = {
 
 motor = motor()
 servo_17 = servo(17)
-servo_27 = servo(277)
+servo_27 = servo(27)
 
 
 
