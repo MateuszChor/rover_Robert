@@ -33,7 +33,6 @@ axis_code = {
     17: "DPad vertical"
 }
 
-GPIO.setwarnings(False)
 
 # in1 orange
 # in2 yellow
@@ -48,6 +47,8 @@ in4 = 5
 en = 26
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
 GPIO.setup(in1, GPIO.OUT)
 GPIO.setup(in2, GPIO.OUT)
 GPIO.setup(in3, GPIO.OUT)
@@ -71,17 +72,28 @@ for event in gamepad.read_loop():
         if event.code in button_code:
             button_name = button_code[event.code]
 
-            print(button_name + " " + ("pressed" if event.value else "released"))
+            # print(button_name + " " + ("pressed" if event.value else "released"))
 
+            if button_name == "Triangle" and event.value == 1:
+                print(" press")
+                GPIO.setup(in1, GPIO.HIGH)
+                GPIO.setup(in3, GPIO.HIGH)
+
+            elif button_name == "Triangle" and event.value == 0:
+                print(" no press")
+                GPIO.setup(in1, GPIO.LOW)
+                GPIO.setup(in3, GPIO.LOW)
 
         elif event.code in axis_code:
             axis_name = axis_code[event.code]
 
-            if axis_name == "Right stick horizontal" and event.value == 255:
+            if axis_name == "Left stick vertical" and event.value == 0:
+                print("gora")
                 GPIO.setup(in1, GPIO.HIGH)
                 GPIO.setup(in3, GPIO.HIGH)
 
-            if axis_name == "Right stick horizontal" and event.value == 0:
+            if axis_name == "Left stick vertical" and event.value == 255:
+                print("dol")
                 GPIO.setup(in1, GPIO.LOW)
                 GPIO.setup(in3, GPIO.LOW)
 
