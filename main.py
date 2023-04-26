@@ -90,7 +90,7 @@ for event in gamepad.read_loop():
 
 
 
-            elif axis_name == "Left stick horizontal":
+            elif axis_name == "Right stick horizontal":
 
                 value = motor.pwm_speed(event.value)
                 print(event.value)
