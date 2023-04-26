@@ -46,7 +46,7 @@ def all_position_print():
 
             elif event.code in axis_code:
                 axis_name = axis_code[event.code]
-                print(axis_name + " " + str(event.value))
+                # print(axis_name + " " + str(event.value))
 
                 # przykład na left analog gora dol 0 - 255  (środek 129-130)
                 if axis_name == "Right stick vertical":
