@@ -3,6 +3,9 @@ import RPi.GPIO as GPIO
 # 15.53
 # power battery 10.95 V
 
+# 16.16
+# power battery 10.77 V
+
 from evdev import InputDevice, categorize, ecodes
 
 # Object store input data
