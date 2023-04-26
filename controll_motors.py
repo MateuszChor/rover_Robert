@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 
+
 class motor:
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
@@ -17,6 +18,12 @@ class motor:
         self.pwm = GPIO.PWM(self.en, 1000)
 
     def pwm_speed(self, value):
+        """
+        get pwn value and scale it for analog stick
+        :param pwm value:
+        :return scaled pvn value:
+        get pwm value and scale it to analog stick
+        """
         scaled_value = int(value / 2.55)
         print(scaled_value)
 

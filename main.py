@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from controll_motors import motor
+from controll_servo import servo_17
 
 # 15.53
 # power battery 10.95 V
@@ -48,11 +49,12 @@ axis_code = {
 # in4 blue
 # en bronze
 
-# servo 1 16
-# servo 2 20
 
 
 motor = motor()
+servo_17 = servo_17(17)
+servo_27 = servo_17(27)
+
 
 for event in gamepad.read_loop():
 
@@ -67,6 +69,20 @@ for event in gamepad.read_loop():
             if button_name == "Cross" and event.value == 1:
                 print(" press")
 
+                if axis_name == "Right stick vertical":
+                    value = servo_17.pwn_scale_servo(event.value)
+                    print(event.value)
+                    # TODO  make it simpler scale middle center
+                    if event.value < 110:
+                        print("left servo")
+                        servo_17.move_servo(value)
+
+                    elif event.value > 136:
+                        print("right servo")
+                        servo_17.move_servo(value)
+
+                    else:
+                        servo_17.stop()
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
