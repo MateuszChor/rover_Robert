@@ -20,7 +20,7 @@ try:
         servo_2.ChangeDutyCycle(2.5)
         time.sleep(1)
         servo_1.ChangeDutyCycle(7.5)  # 90 stopni
-        servo_2.ChangeDutyCycle(7.5)
+        servo_2.ChangeDutyCycle(10)
         time.sleep(1)
         servo_1.ChangeDutyCycle(12.5)  # 180 stopni
         servo_2.ChangeDutyCycle(12.5)
