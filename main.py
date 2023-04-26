@@ -88,44 +88,44 @@ for event in gamepad.read_loop():
                 if event.code in axis_code:
                     servo_move(axis_code)
 
+
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
 
-                if event.code in axis_code:
-                    axis_name = axis_code[event.code]
+        elif event.code in axis_code:
+            axis_name = axis_code[event.code]
 
-                    if axis_name == "Left stick vertical":
+            if axis_name == "Left stick vertical":
 
-                        value = motor.pwm_speed(event.value)
-                        print(event.value)
-                        if event.value < 120:
-                            print("forward")
-                            motor.forward()
+                value = motor.pwm_speed(event.value)
+                print(event.value)
+                if event.value < 120:
+                    print("forward")
+                    motor.forward()
 
-                        elif event.value > 136:
-                            print("backward")
-                            motor.backward()
+                elif event.value > 136:
+                    print("backward")
+                    motor.backward()
 
-                        else:
-                            motor.stop()
+                else:
+                    motor.stop()
 
 
 
-                    if axis_name == "Right stick vertical":
+            if axis_name == "Right stick vertical":
 
-                        value = motor.pwm_speed(event.value)
-                        print(event.value)
-                        if event.value < 110:
-                            print("left")
-                            motor.turn_left()
+                value = motor.pwm_speed(event.value)
+                print(event.value)
+                if event.value < 110:
+                    print("left")
+                    motor.turn_left()
 
-                        elif event.value > 136:
-                            print("right")
-                            motor.turn_right()
+                elif event.value > 136:
+                    print("right")
+                    motor.turn_right()
 
-                        else:
-                            motor.stop()
-
+                else:
+                    motor.stop()
 
 
 
