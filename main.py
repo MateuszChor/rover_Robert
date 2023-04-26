@@ -85,6 +85,9 @@ for event in gamepad.read_loop():
                     print("backward")
                     motor.backward()
 
+                else:
+                    motor.stop()
+
 
 
             elif axis_name == "Left stick horizontal":
@@ -99,9 +102,8 @@ for event in gamepad.read_loop():
                     print("right")
                     motor.turn_right()
 
-
-            else:
-                motor.stop()
+                else:
+                    motor.stop()
 
             # if axis_name == "Left stick vertical" and event.value == 0:
             #     print("gora")
