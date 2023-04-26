@@ -8,7 +8,7 @@ class servo:
     def __init__(self, pin):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-        self.servo_pin = pin
+        self.servo_pin = 17
         GPIO.setup(self.servo_pin, GPIO.OUT)
         self.pwn_servo = GPIO.PWM(self.servo_pin, 50)
 
@@ -39,6 +39,9 @@ class servo:
         :param sclaed value:
         """
         self.pwn_servo.ChangeDutyCycle(value)
+
+    def stop(self):
+        pass
 
     # servo = servo()
 #
