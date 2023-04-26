@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 
+# 15.53
+# power battery 10.95 V
+
 from evdev import InputDevice, categorize, ecodes
 
 # Object store input data
@@ -87,12 +90,12 @@ for event in gamepad.read_loop():
         elif event.code in axis_code:
             axis_name = axis_code[event.code]
 
-            if axis_name == "Left stick vertical" and event.value == 0:
+            while axis_name == "Left stick vertical" and event.value == 0:
                 print("gora")
                 GPIO.setup(in1, GPIO.HIGH)
                 GPIO.setup(in3, GPIO.HIGH)
 
-            if axis_name == "Left stick vertical" and event.value == 255:
+            while axis_name == "Left stick vertical" and event.value == 255:
                 print("dol")
                 GPIO.setup(in1, GPIO.LOW)
                 GPIO.setup(in3, GPIO.LOW)
