@@ -19,8 +19,15 @@ class motor:
     def pwm_speed(self, value):
         scaled_value = int(value / 2.55)
         print(scaled_value)
-        self.pwm.start(scaled_value)
-        return scaled_value
+
+        if scaled_value < 50:
+            scaled_value = 100 - scaled_value
+            self.pwm.start(scaled_value)
+            print(scaled_value)
+            return scaled_value
+        else:
+            self.pwm.start(scaled_value)
+            return scaled_value
 
     def forward(self):
         GPIO.output(self.in1, GPIO.HIGH)
