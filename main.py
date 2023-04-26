@@ -13,9 +13,9 @@ gamepad = InputDevice('/dev/input/event1')
 
 # Przypisz kody klawiszy do zmiennych
 button_code = {
-    304: "Triangle",
+    304: "Cross",
     305: "Circle",
-    306: "Cross",
+    306: "Triangle",
     307: "Square",
     308: "Left bumper",
     309: "Right bumper",
@@ -61,10 +61,10 @@ GPIO.setup(in3, GPIO.OUT)
 GPIO.setup(in4, GPIO.OUT)
 GPIO.setup(en, GPIO.OUT)
 
-GPIO.setup(in1, GPIO.LOW)
-GPIO.setup(in2, GPIO.LOW)
-GPIO.setup(in3, GPIO.LOW)
-GPIO.setup(in4, GPIO.LOW)
+GPIO.output(in1, GPIO.LOW)
+GPIO.output(in2, GPIO.LOW)
+GPIO.output(in3, GPIO.LOW)
+GPIO.output(in4, GPIO.LOW)
 
 pwn_mode = GPIO.PWM(en, 1000)
 
@@ -80,28 +80,28 @@ for event in gamepad.read_loop():
 
             # print(button_name + " " + ("pressed" if event.value else "released"))
 
-            if button_name == "Triangle" and event.value == 1:
+            if button_name == "Cross" and event.value == 1:
                 print(" press")
-                GPIO.setup(in1, GPIO.HIGH)
-                GPIO.setup(in3, GPIO.HIGH)
+                GPIO.output(in1, GPIO.HIGH)
+                GPIO.output(in3, GPIO.HIGH)
 
-            elif button_name == "Triangle" and event.value == 0:
+            elif button_name == "Cross" and event.value == 0:
                 print(" no press")
-                GPIO.setup(in1, GPIO.LOW)
-                GPIO.setup(in3, GPIO.LOW)
+                GPIO.output(in1, GPIO.LOW)
+                GPIO.output(in3, GPIO.LOW)
 
         elif event.code in axis_code:
             axis_name = axis_code[event.code]
 
-            while axis_name == "Left stick vertical" and event.value == 0:
+            if axis_name == "Left stick vertical" and event.value == 0:
                 print("gora")
-                GPIO.setup(in1, GPIO.HIGH)
-                GPIO.setup(in3, GPIO.HIGH)
+                GPIO.output(in1, GPIO.HIGH)
+                GPIO.output(in3, GPIO.HIGH)
 
-            while axis_name == "Left stick vertical" and event.value == 255:
+            if axis_name == "Left stick vertical" and event.value == 255:
                 print("dol")
-                GPIO.setup(in1, GPIO.LOW)
-                GPIO.setup(in3, GPIO.LOW)
+                GPIO.output(in1, GPIO.LOW)
+                GPIO.output(in3, GPIO.LOW)
 
 
 
