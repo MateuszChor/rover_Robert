@@ -48,7 +48,8 @@ axis_code = {
 # in4 blue
 # en bronze
 
-
+# servo 1 16
+# servo 2 20
 
 
 motor = motor()
