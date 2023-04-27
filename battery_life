@@ -1,18 +1,29 @@
+2200 mAH = 1 li-lon 3,4-4,2V
+
 # 27.04.2023
 
 # with power on ----------
 
 # time 6.21
-# power battery 12.54
+# power battery 12.54 V
 
 # time 6.43
-# power battery 12.14
+# power battery 12.14 V
 
 # time 7.08
-# power battery 11.95
+# power battery 11.95 V
 
 # time 7.47
-# power battery 11.73
+# power battery 11.73 V
 
 # time 8.16
-# power battery 11.48
+# power battery  11.48 V
+
+#time 8.29
+# power battery  11.35 V
+
+
+# with power off -----
+
+#time 8.29
+# power battery  11.50 V
