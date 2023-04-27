@@ -1,5 +1,4 @@
-from controll_motors import motor
-from controll_servo import servo
+from controll_gpio import motor, servo
 
 # 15.53
 # power battery 10.95 V
@@ -106,16 +105,13 @@ for event in gamepad.read_loop():
 
                 value = motor.pwm_speed(event.value)
                 # print(event.value)
-                if event.value < 122:
+                if event.value < 96:
                     print("forward")
                     motor.forward()
 
-                elif event.value > 136:
+                elif event.value > 146:
                     print("backward")
                     motor.backward()
-
-                else:
-                    motor.stop()
 
             elif axis_name == "Right stick vertical":
 
@@ -129,6 +125,5 @@ for event in gamepad.read_loop():
                     print("right")
                     motor.turn_left()
 
-                else:
-                    motor.stop()
+
 
