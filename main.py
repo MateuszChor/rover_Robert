@@ -5,7 +5,7 @@ from codes_dict import AXIS_CODE, BUTTON_CODE
 
 gamepad = InputDevice('/dev/input/event1')
 motor = motor()
-servo_17 = servo(17, 30)
+servo_17 = servo(17, 35)
 servo_27 = servo(27, 0)
 
 def motor_move(postion, value):
@@ -44,7 +44,7 @@ def motor_move(postion, value):
 
 
 def servo_move(servo, half=False):
-    if event.value not in range(6.0, 6.5):
+    if event.value not in range(110, 135):
         servo.pwm_speed(event.value, half)
         # TODO  make it simpler scale middle center
 
