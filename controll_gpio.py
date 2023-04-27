@@ -15,8 +15,8 @@ class motor:
         GPIO.setup(self.in3, GPIO.OUT)
         GPIO.setup(self.in4, GPIO.OUT)
         GPIO.setup(self.en, GPIO.OUT)
-        self.pwm = GPIO.PWM(self.en, 1000)
-        self.pwm.start(0)
+        self.pwm_motor = GPIO.PWM(self.en, 1000)
+        self.pwm_motor.start(0)
 
     def pwm_speed(self, value):
         """
@@ -32,10 +32,10 @@ class motor:
 
         if scaled_value < 50:
             scaled_value = 100 - scaled_value
-            self.pwm.ChangeDutyCycle(scaled_value)
+            self.pwm_motor.ChangeDutyCycle(scaled_value)
             #print("2 way ", scaled_value)
         else:
-            self.pwm.ChangeDutyCycle(scaled_value)
+            self.pwm_motor.ChangeDutyCycle(scaled_value)
 
     def forward(self):
         GPIO.output(self.in1, GPIO.HIGH)
@@ -94,11 +94,11 @@ class servo:
 
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
-            self.pwm.ChangeDutyCycle(scaled_value)
+            self.pwn_servo.ChangeDutyCycle(scaled_value)
             print(scaled_value)
 
         else:
-            self.pwm.ChangeDutyCycle(scaled_value)
+            self.pwm_servo.ChangeDutyCycle(scaled_value)
             print(scaled_value)
 
     def move_servo(self, value):
@@ -110,7 +110,7 @@ class servo:
         pass
 
     def center(self):
-        self.pwm.ChangeDutyCycle(6)
+        self.pwm_servo.ChangeDutyCycle(6)
 
     def clean_gpio(self):
         GPIO.clenup()
