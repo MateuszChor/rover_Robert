@@ -65,7 +65,7 @@ def servo_move(axis_name, event):
             # servo_17.stop()
 
 
-status_cross_button = 0
+status_cross_button = False
 
 for event in gamepad.read_loop():
 
@@ -76,26 +76,26 @@ for event in gamepad.read_loop():
 
             if button_name == "Cross" and event.value == 1:
                 print(" press")
-                if event.code in AXIS_CODE:
-                    print(" in if")
-                    axis_name = AXIS_CODE[event.code]
-                    servo_move(axis_name, event)
-                    status_cross_button = 1
+                status_cross_button != status_cross_button
+                print(status_cross_button)
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
-                status_cross_button = 0
 
-            if status_cross_button == 0:
-                if event.code in AXIS_CODE:
-                    axis_name = AXIS_CODE[event.code]
+        if status_cross_button:
+            axis_name = AXIS_CODE[event.code]
+            print(" in if")
+            servo_move(axis_name, event)
 
-                    if axis_name == "Left stick vertical":
-                        axis_name = AXIS_CODE[event.code]
-                        motor.pwm_speed(event.value)
-                        motor_move("vertical", event.value)
+        elif event.code in AXIS_CODE:
+            axis_name = AXIS_CODE[event.code]
 
-                    elif axis_name == "Right stick vertical":
-                        axis_name = AXIS_CODE[event.code]
-                        motor.pwm_speed(event.value)
-                        motor_move("horizontal", event.value)
+            if axis_name == "Left stick vertical":
+                axis_name = AXIS_CODE[event.code]
+                motor.pwm_speed(event.value)
+                motor_move("vertical", event.value)
+
+            elif axis_name == "Right stick vertical":
+                axis_name = AXIS_CODE[event.code]
+                motor.pwm_speed(event.value)
+                motor_move("horizontal", event.value)
