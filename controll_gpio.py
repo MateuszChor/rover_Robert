@@ -78,8 +78,8 @@ class servo:
         GPIO.setwarnings(False)
         self.servo_pin = pin
         GPIO.setup(self.servo_pin, GPIO.OUT)
-        self.pwn_servo = GPIO.PWM(self.servo_pin, 50)
-        self.pwn_servo.start(0)
+        self.pwm_servo = GPIO.PWM(self.servo_pin, 50)
+        self.pwm_servo.start(0)
 
     def pwm_speed(self, value):
         """
@@ -94,7 +94,7 @@ class servo:
 
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
-            self.pwn_servo.ChangeDutyCycle(scaled_value)
+            self.pwm_servo.ChangeDutyCycle(scaled_value)
             print(scaled_value)
 
         else:
