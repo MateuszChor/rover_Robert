@@ -11,6 +11,7 @@ class servo:
         self.servo_pin = 17
         GPIO.setup(self.servo_pin, GPIO.OUT)
         self.pwn_servo = GPIO.PWM(self.servo_pin, 50)
+        self.pwn_servo.start(0)
 
     def pwm_speed(self, value):
         """
@@ -22,15 +23,14 @@ class servo:
         # 255/12.5 = 20.4
 
         scaled_value = int(value / 20.4)
-        print(scaled_value)
+        # print(scaled_value)
 
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
-            self.pwm_servo.start(scaled_value)
             print(scaled_value)
             return scaled_value
         else:
-            self.pwm_servo.start(scaled_value)
+            print(scaled_value)
             return scaled_value
 
     def move_servo(self, value):

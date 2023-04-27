@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 from controll_motors import motor
 from controll_servo import servo
 
@@ -9,7 +8,7 @@ from controll_servo import servo
 # power battery 10.77 V
 
 
-from evdev import InputDevice, categorize, ecodes
+from evdev import InputDevice, ecodes
 
 # Object store input data
 gamepad = InputDevice('/dev/input/event1')
@@ -42,21 +41,17 @@ axis_code = {
     17: "DPad vertical"
 }
 
-
 # in1 orange
 # in2 yellow
 # in3 green
 # in4 blue
 # en bronze
 
-
-
 motor = motor()
 servo_17 = servo(17)
 
 
 def servo_move(axis_name):
-
     if axis_name == "Right stick vertical":
         value = servo_17.pwm_speed(event.value)
         print(event.value)
@@ -88,9 +83,14 @@ for event in gamepad.read_loop():
                 if event.code in axis_code:
                     servo_move(axis_code)
 
-
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
+
+            if button_name == "Left bumper" and event.value == 1:
+                print("bumber press")
+
+            elif button_name == "Left bumper" and event.value == 0:
+                print("bumber no press")
 
         elif event.code in axis_code:
             axis_name = axis_code[event.code]
@@ -110,25 +110,20 @@ for event in gamepad.read_loop():
                 else:
                     motor.stop()
 
-
-
             elif axis_name == "Right stick vertical":
 
-
-                value = motor.pwm_speed(event.value)
+                # value = motor.pwm_speed(event.value)
+                value = servo_17.pwm_speed(event.value)
                 if event.value < 122:
-                    value = motor.pwm_speed(event.value)
+                    servo_17.move_servo(value)
                     print("left")
-                    motor.turn_left()
+                    # motor.turn_left()
 
                 elif event.value > 136:
                     print("right")
-                    motor.turn_right()
+                    servo_17.move_servo(value)
+                    # motor.turn_right()
 
                 else:
-                    motor.stop()
-
-
-
-
-
+                    # motor.stop()
+                    servo_17.stop()
