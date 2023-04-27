@@ -8,10 +8,13 @@ from controll_servo import servo
 # power battery 10.77 V
 
 
-# ----------
+# bez obciążenia ----------
 
-# 6.20
+# 6.21
 # power battery 12.54
+
+# 6.43
+# power battery 12.14
 
 from evdev import InputDevice, ecodes
 
@@ -119,11 +122,11 @@ for event in gamepad.read_loop():
                 value = motor.pwm_speed(event.value)
                 print(event.value)
                 if event.value < 96:
-                    print("right")
+                    print("left")
                     motor.turn_right()
 
                 elif event.value > 146:
-                    print("left")
+                    print("right")
                     motor.turn_left()
 
                 else:
