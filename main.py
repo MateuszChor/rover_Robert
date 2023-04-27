@@ -76,11 +76,15 @@ for event in gamepad.read_loop():
 
             if button_name == "Cross" and event.value == 1:
                 print(" press")
-                status_cross_button = status_cross_button != status_cross_button
-                print(status_cross_button)
+                # status_cross_button = status_cross_button != status_cross_button
+                # print(status_cross_button)
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
+                if not status_cross_button:
+                    status_cross_button = True
+                else:
+                    status_cross_button = False
 
         if status_cross_button:
             axis_name = AXIS_CODE[event.code]
