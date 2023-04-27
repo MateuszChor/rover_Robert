@@ -43,10 +43,16 @@ def motor_move(postion, value):
         # motor.stop()
 
 
-def servo_move(servo):
+def servo_move(servo, half=False):
+    if half:
+        half_value = event.value/2
+        servo.pwm_speed(event.value)
+    else:
         print("servo_move")
         servo.pwm_speed(event.value)
-        print(event.value)
+
+
+
         # TODO  make it simpler scale middle center
 
 status_cross_button = False
@@ -74,7 +80,7 @@ for event in gamepad.read_loop():
                 if axis_name == "Right stick vertical":
                     servo_move(servo_27)
                 elif axis_name == "Left stick vertical":
-                    servo_move(servo_17)
+                    servo_move(servo_17, True)
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]

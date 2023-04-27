@@ -106,5 +106,12 @@ class servo:
     def center(self):
         self.pwm_servo.ChangeDutyCycle(6)
 
+    def min_value(self):
+        self.pwm_servo.ChangeDutyCycle(0)
+
+    def max_value(self):
+        self.pwm_servo.ChangeDutyCycle(12.5)
+
+
     def clean_gpio(self):
         GPIO.clenup()
