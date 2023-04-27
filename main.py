@@ -65,6 +65,8 @@ def servo_move(axis_name, event):
             # servo_17.stop()
 
 
+status_cross_button = 0
+
 for event in gamepad.read_loop():
 
     if event.type == ecodes.EV_KEY or event.type == ecodes.EV_ABS:
@@ -78,19 +80,22 @@ for event in gamepad.read_loop():
                     print(" in if")
                     axis_name = AXIS_CODE[event.code]
                     servo_move(axis_name, event)
+                    status_cross_button = 1
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")
+                status_cross_button = 0
 
-        elif event.code in AXIS_CODE:
-            axis_name = AXIS_CODE[event.code]
+            if status_cross_button == 0:
+                if event.code in AXIS_CODE:
+                    axis_name = AXIS_CODE[event.code]
 
-            if axis_name == "Left stick vertical":
-                axis_name = AXIS_CODE[event.code]
-                motor.pwm_speed(event.value)
-                motor_move("vertical", event.value)
+                    if axis_name == "Left stick vertical":
+                        axis_name = AXIS_CODE[event.code]
+                        motor.pwm_speed(event.value)
+                        motor_move("vertical", event.value)
 
-            elif axis_name == "Right stick vertical":
-                axis_name = AXIS_CODE[event.code]
-                motor.pwm_speed(event.value)
-                motor_move("horizontal", event.value)
+                    elif axis_name == "Right stick vertical":
+                        axis_name = AXIS_CODE[event.code]
+                        motor.pwm_speed(event.value)
+                        motor_move("horizontal", event.value)
