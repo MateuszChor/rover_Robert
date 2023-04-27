@@ -8,6 +8,7 @@
 .idea/modules.xml
 .idea/rover_Robert.iml
 .idea/vcs.xml
+__pycache__
 
 
 test_motor.py

@@ -8,6 +8,11 @@ from controll_servo import servo
 # power battery 10.77 V
 
 
+# ----------
+
+# 6.20
+# power battery 12.54
+
 from evdev import InputDevice, ecodes
 
 # Object store input data
