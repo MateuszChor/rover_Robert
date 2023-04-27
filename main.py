@@ -44,7 +44,7 @@ def motor_move(postion, value):
         # motor.stop()
 
 
-def servo_move(axis_name, event):
+def servo_move(axis_name):
     if axis_name == "Right stick vertical":
         print("servo_move")
         try:
@@ -90,7 +90,7 @@ for event in gamepad.read_loop():
             if event.code in AXIS_CODE:
                 axis_name = AXIS_CODE[event.code]
                 print(" in if")
-                servo_move(axis_name, event)
+                servo_move(axis_name)
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
