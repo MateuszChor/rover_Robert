@@ -92,4 +92,4 @@ class gamepad:
                         motor.pwm_speed(event.value)
                         self.motor_move("horizontal", event.value)
 
-gamepad.run_loop()
+gamepad.run_loop
