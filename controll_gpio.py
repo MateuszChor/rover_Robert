@@ -34,10 +34,9 @@ class motor:
             scaled_value = 100 - scaled_value
             self.pwm.ChangeDutyCycle(scaled_value)
             # print(scaled_value)
-            return scaled_value
         else:
             self.pwm.ChangeDutyCycle(scaled_value)
-            return scaled_value
+
 
     def forward(self):
         GPIO.output(self.in1, GPIO.HIGH)
@@ -68,6 +67,7 @@ class motor:
         GPIO.output(self.in2, GPIO.LOW)
         GPIO.output(self.in3, GPIO.LOW)
         GPIO.output(self.in4, GPIO.LOW)
+        GPIO.cleanup()
 
 
 class servo:
@@ -96,8 +96,8 @@ class servo:
 
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
-            print(scaled_value)
             self.pwm.ChangeDutyCycle(scaled_value)
+            print(scaled_value)
 
         else:
             self.pwm.ChangeDutyCycle(scaled_value)
@@ -108,7 +108,10 @@ class servo:
         get scaled value and set servo on this value
         :param scaled value:
         """
-        self.pwn_servo.ChangeDutyCycle(value)
+        # self.pwn_servo.ChangeDutyCycle(value)
+        pass
 
     def stop(self):
-        pass
+        self.pwm.ChangeDutyCycle(6)
+        GPIO.clenup()
+
