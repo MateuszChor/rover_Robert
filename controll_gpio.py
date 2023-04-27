@@ -90,7 +90,7 @@ class servo:
 
         # 255/12.5 = 20.4
 
-        scaled_value = float(value / 40.8)
+        scaled_value = float(value / 10.2)
         print("pwm speed controll gpio scaled value ", scaled_value)
 
         self.pwm_servo.ChangeDutyCycle(scaled_value)
