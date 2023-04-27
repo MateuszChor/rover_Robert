@@ -5,7 +5,7 @@ from codes_dict import AXIS_CODE, BUTTON_CODE
 
 gamepad = InputDevice('/dev/input/event1')
 motor = motor()
-servo_tilt_17 = servo(17, 40)
+# servo_tilt_17 = servo(17, 40)
 servo_rotate_27 = servo(27, 0)
 
 def motor_move(postion, value):
@@ -92,7 +92,8 @@ for event in gamepad.read_loop():
                 if axis_name == "Right stick vertical":
                     servo_move(servo_rotate_27, "center", )
                 elif axis_name == "Left stick vertical":
-                    servo_move(servo_tilt_17, "min")
+                    pass
+                    # servo_move(servo_tilt_17, "min")
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
