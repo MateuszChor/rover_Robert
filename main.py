@@ -63,12 +63,10 @@ def servo_move(axis_name):
         # TODO  make it simpler scale middle center
         if event.value < 110:
             print("left servo")
-            servo_17.move_servo(value)
-
+            servo_17.pwm_speed(value)
         elif event.value > 136:
             print("right servo")
-            servo_17.move_servo(value)
-
+            servo_17.pwm_speed(value)
         else:
             servo_17.stop()
 
@@ -117,17 +115,15 @@ for event in gamepad.read_loop():
 
             elif axis_name == "Right stick vertical":
 
-                # value = motor.pwm_speed(event.value)
-                value = servo_17.pwm_speed(event.value)
+                value = motor.pwm_speed(event.value)
+
                 if event.value < 122:
-                    servo_17.move_servo(value)
                     print("left")
-                    # motor.turn_left()
+                    motor.turn_left()
 
                 elif event.value > 136:
                     print("right")
-                    servo_17.move_servo(value)
-                    # motor.turn_right()
+                    motor.turn_right()
 
                 else:
                     # motor.stop()

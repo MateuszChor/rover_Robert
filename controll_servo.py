@@ -17,7 +17,6 @@ class servo:
         """
         get pwn value and scale it for analog stick
         :param pwm value:
-        :return scaled pvn value:
         """
 
         # 255/12.5 = 20.4
@@ -28,10 +27,11 @@ class servo:
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
             print(scaled_value)
-            return scaled_value
+            self.pwm.ChangeDutyCycle(scaled_value)
+
         else:
+            self.pwm.ChangeDutyCycle(scaled_value)
             print(scaled_value)
-            return scaled_value
 
     def move_servo(self, value):
         """
