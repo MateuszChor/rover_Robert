@@ -90,11 +90,13 @@ class servo:
 
         # 255/12.5 = 20.4
 
-        scaled_value = float(value / 20.4)
-        print("pwm speed controll gpio scaled value ",scaled_value)
+        scaled_value = float(value / 40.8)
+        print("pwm speed controll gpio scaled value ", scaled_value)
 
         self.pwm_servo.ChangeDutyCycle(scaled_value)
 
+    def half_value_analog(self, value):
+        return value-(value/2)
     def move_servo(self, value):
         """
         get scaled value and set servo on this value
