@@ -7,7 +7,8 @@ class gamepad:
 
     def __init__(self):
         self.gamepad_device = InputDevice('/dev/input/event1')
-        self.servo_17 = servo(17)
+        self.servo_tilt = servo(17)
+        self.servo_rotate = servo(27)
         self.motor = motor
 
     def motor_move(self, postion, value):

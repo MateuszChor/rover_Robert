@@ -44,7 +44,7 @@ def motor_move(postion, value):
         # motor.stop()
 
 
-def servo_move(axis_name):
+def servo_move(axis_name, event):
     if axis_name == "Right stick vertical":
         try:
             value = servo_17.pwm_speed(event.value)
@@ -57,9 +57,11 @@ def servo_move(axis_name):
                 print("right servo")
                 servo_17.pwm_speed(value)
 
-                servo_17.stop()
+            else:
+                servo_17.center()
         finally:
-            servo_17.stop()
+            pass
+            # servo_17.stop()
 
 
 for event in gamepad.read_loop():
@@ -73,7 +75,7 @@ for event in gamepad.read_loop():
                 print(" press")
                 if event.code in AXIS_CODE:
                     axis_name = AXIS_CODE[event.code]
-                    servo_move(AXIS_CODE)
+                    servo_move(axis_name, event)
 
             elif button_name == "Cross" and event.value == 0:
                 print(" no press")

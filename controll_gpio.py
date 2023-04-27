@@ -76,8 +76,7 @@ class servo:
         self.pwm = None
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-        self.servo_pin = 17
-        self.servo_pin_2 = 27
+        self.servo_pin = pin
         GPIO.setup(self.servo_pin, GPIO.OUT)
         self.pwn_servo = GPIO.PWM(self.servo_pin, 50)
         self.pwn_servo.start(0)
@@ -110,7 +109,8 @@ class servo:
         # self.pwn_servo.ChangeDutyCycle(value)
         pass
 
-    def stop(self):
+    def center(self):
         self.pwm.ChangeDutyCycle(6)
-        # GPIO.clenup()
 
+    def clean_gpio(self):
+        GPIO.clenup()
