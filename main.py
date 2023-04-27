@@ -47,9 +47,18 @@ def servo_move(servo, half=False):
     if event.value not in range(96, 146):
         servo.pwm_speed(event.value, half)
         # TODO  make it simpler scale middle center
+
     else:
-        servo.center()
         print("don't move with analog")
+
+        if half:
+            servo.center()
+            print("center")
+
+        elif not half:
+            print("center")
+            servo.max_value()
+
 
 status_cross_button = False
 
