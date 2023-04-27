@@ -87,9 +87,10 @@ for event in gamepad.read_loop():
                     status_cross_button = False
 
         if status_cross_button:
-            axis_name = AXIS_CODE[event.code]
-            print(" in if")
-            servo_move(axis_name, event)
+            if event.code in AXIS_CODE:
+                axis_name = AXIS_CODE[event.code]
+                print(" in if")
+                servo_move(axis_name, event)
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
