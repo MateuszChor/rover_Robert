@@ -27,13 +27,13 @@ class motor:
         """
 
         # print(value)
-        scaled_value = int(value / 1.275)
-        print(scaled_value)
+        scaled_value = int(value / 255)
+        #print(scaled_value)
 
         if scaled_value < 50:
-            scaled_value = 50 - scaled_value
+            scaled_value = 100 - scaled_value
             self.pwm.ChangeDutyCycle(scaled_value)
-            print("2 way ", scaled_value)
+            #print("2 way ", scaled_value)
         else:
             self.pwm.ChangeDutyCycle(scaled_value)
 
