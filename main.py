@@ -6,7 +6,7 @@ from codes_dict import AXIS_CODE, BUTTON_CODE
 gamepad = InputDevice('/dev/input/event1')
 motor = motor()
 servo_17 = servo(17, 25)
-servo_27 = servo(27, 50)
+servo_27 = servo(27, 0)
 
 def motor_move(postion, value):
     """
