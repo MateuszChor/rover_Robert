@@ -90,7 +90,7 @@ class servo:
         # 255/12.5 = 20.4
 
         scaled_value = int(value / 20.4)
-        # print(scaled_value)
+        print("pwm speed controll gpio scaled value ",scaled_value)
 
         if scaled_value < 6:
             scaled_value = 12 - scaled_value
