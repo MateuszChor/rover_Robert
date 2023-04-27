@@ -27,7 +27,7 @@ class motor:
         """
 
         # print(value)
-        scaled_value = int(value / 1.275)
+        scaled_value = int(value / 1.3)
         print(scaled_value)
 
         if scaled_value < 50:
