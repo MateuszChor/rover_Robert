@@ -93,10 +93,9 @@ for event in gamepad.read_loop():
                 axis_name = AXIS_CODE[event.code]
                 print(" in if")
                 if axis_name == "Right stick vertical":
-                    servo_move(axis_name, servo_27)
-
+                    servo_move(servo_27)
                 elif axis_name == "Left stick vertical":
-                    servo_move(axis_name, servo_17)
+                    servo_move(servo_17)
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
