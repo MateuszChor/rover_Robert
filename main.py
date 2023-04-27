@@ -76,7 +76,7 @@ for event in gamepad.read_loop():
 
             if button_name == "Cross" and event.value == 1:
                 print(" press")
-                status_cross_button != status_cross_button
+                status_cross_button = status_cross_button != status_cross_button
                 print(status_cross_button)
 
             elif button_name == "Cross" and event.value == 0:
