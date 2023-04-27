@@ -45,10 +45,10 @@ def motor_move(postion, value):
 
 def servo_move(servo, half=False):
     if half:
+        print("half")
         half_value = event.value/2
-        servo.pwm_speed(event.value)
+        servo.pwm_speed(half_value)
     else:
-        print("servo_move")
         servo.pwm_speed(event.value)
 
 
