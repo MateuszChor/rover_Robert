@@ -48,15 +48,15 @@ def servo_move(axis_name):
     if axis_name == "Right stick vertical":
         print("servo_move")
         try:
-            value = servo_17.pwm_speed(event.value)
+            servo_17.pwm_speed(event.value)
             print(event.value)
             # TODO  make it simpler scale middle center
             if event.value < 110:
                 print("left servo")
-                servo_17.pwm_speed(value)
+                servo_17.pwm_speed(event.value)
             elif event.value > 136:
                 print("right servo")
-                servo_17.pwm_speed(value)
+                servo_17.pwm_speed(event.value)
 
             else:
                 servo_17.center()
