@@ -30,11 +30,12 @@ class motor:
         scaled_value = int(value / 255)
         #print(scaled_value)
 
-        if scaled_value < 50:
+        if scaled_value < 48:
             scaled_value = 100 - scaled_value
             self.pwm_motor.ChangeDutyCycle(scaled_value)
             #print("2 way ", scaled_value)
-        else:
+
+        elif scaled_value > 52:
             self.pwm_motor.ChangeDutyCycle(scaled_value)
 
     def forward(self):

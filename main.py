@@ -51,16 +51,15 @@ def servo_move(servo):
             servo.pwm_speed(event.value)
             print(event.value)
             # TODO  make it simpler scale middle center
-            if event.value < 110:
-                print("left servo")
-                servo.pwm_speed(event.value)
-            elif event.value > 136:
-                print("right servo")
-                servo.pwm_speed(event.value)
-
-            else:
-                pass
-                #servo_17.center()
+            # if event.value < 110:
+            #     print("left servo")
+            #     servo.pwm_speed(event.value)
+            # elif event.value > 136:
+            #     print("right servo")
+            #     servo.pwm_speed(event.value)
+            # else:
+                # pass
+                # servo_17.center()
         finally:
             pass
             # servo_17.stop()
