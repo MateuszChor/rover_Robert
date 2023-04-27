@@ -84,6 +84,7 @@ for event in gamepad.read_loop():
             if button_name == "Cross" and event.value == 1:
                 print(" press")
                 if event.code in axis_code:
+                    axis_name = axis_code[event.code]
                     servo_move(axis_code)
 
             elif button_name == "Cross" and event.value == 0:
@@ -116,15 +117,15 @@ for event in gamepad.read_loop():
             elif axis_name == "Right stick vertical":
 
                 value = motor.pwm_speed(event.value)
-
-                if event.value < 122:
-                    print("left")
-                    motor.turn_left()
-
-                elif event.value > 136:
+                print(event.value)
+                if event.value < 96:
                     print("right")
                     motor.turn_right()
 
+                elif event.value > 146:
+                    print("left")
+                    motor.turn_left()
+
                 else:
-                    # motor.stop()
-                    servo_17.stop()
+                    motor.stop()
+
