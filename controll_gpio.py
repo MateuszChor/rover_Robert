@@ -37,7 +37,6 @@ class motor:
         else:
             self.pwm.ChangeDutyCycle(scaled_value)
 
-
     def forward(self):
         GPIO.output(self.in1, GPIO.HIGH)
         GPIO.output(self.in2, GPIO.LOW)
@@ -67,7 +66,7 @@ class motor:
         GPIO.output(self.in2, GPIO.LOW)
         GPIO.output(self.in3, GPIO.LOW)
         GPIO.output(self.in4, GPIO.LOW)
-        GPIO.cleanup()
+        # GPIO.cleanup()
 
 
 class servo:
@@ -113,5 +112,5 @@ class servo:
 
     def stop(self):
         self.pwm.ChangeDutyCycle(6)
-        GPIO.clenup()
+        # GPIO.clenup()
 

@@ -9,35 +9,39 @@ motor = motor()
 servo_17 = servo(17)
 
 
-def motor_move(postion):
+def motor_move(postion, value):
     """
     :param postion:
     :param postion vertical or horizontal:
     :return:
     """
+    motor.pwm_speed(value)
+
     try:
-        motor.pwm_speed(event.value)
-        print(event.value)
         if postion == "horizontal":
-            if event.value < 96:
+            if value < 96:
                 print("left")
                 motor.turn_right()
 
-            elif event.value > 146:
+            elif value > 146:
                 print("right")
                 motor.turn_left()
+            else:
+                motor.stop()
 
         elif postion == "vertical":
-            if event.value < 96:
+            if value < 96:
                 print("forward")
                 motor.forward()
 
-            elif event.value > 146:
+            elif value > 146:
                 print("backward")
                 motor.backward()
+            else:
+                motor.stop()
     finally:
         pass
-        motor.stop()
+        # motor.stop()
 
 
 def servo_move(axis_name):
@@ -80,9 +84,9 @@ for event in gamepad.read_loop():
             if axis_name == "Left stick vertical":
                 axis_name = AXIS_CODE[event.code]
                 motor.pwm_speed(event.value)
-                motor_move("vertical")
+                motor_move("vertical", event.value)
 
             elif axis_name == "Right stick vertical":
                 axis_name = AXIS_CODE[event.code]
                 motor.pwm_speed(event.value)
-                motor_move("horizontal")
+                motor_move("horizontal", event.value)
