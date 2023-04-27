@@ -46,6 +46,7 @@ def motor_move(postion, value):
 
 def servo_move(axis_name, event):
     if axis_name == "Right stick vertical":
+        print("servo_move")
         try:
             value = servo_17.pwm_speed(event.value)
             print(event.value)
@@ -74,6 +75,7 @@ for event in gamepad.read_loop():
             if button_name == "Cross" and event.value == 1:
                 print(" press")
                 if event.code in AXIS_CODE:
+                    print(" in if")
                     axis_name = AXIS_CODE[event.code]
                     servo_move(axis_name, event)
 
