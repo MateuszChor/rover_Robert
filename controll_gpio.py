@@ -92,11 +92,13 @@ class servo:
         if not half:
             scaled_value = float(value / 20.4)
             print("pwm speed controll gpio scaled value ", scaled_value)
+            self.pwm_servo.ChangeDutyCycle(scaled_value)
         else:
             scaled_value = float(value / 10.2)
             print("pwm speed controll gpio scaled value ", scaled_value)
+            self.pwm_servo.ChangeDutyCycle(scaled_value)
 
-        self.pwm_servo.ChangeDutyCycle(scaled_value)
+
 
     def half_value_analog(self, value):
         return value-(value/2)
