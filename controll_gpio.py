@@ -82,26 +82,25 @@ class servo:
         self.pwm_servo = GPIO.PWM(self.servo_pin, 50)
         self.pwm_servo.start(start_at)
 
-    def pwm_speed(self, value, half=False):
+    def set_angle(self, angle):
+        angle = (2+(angle/18))
+        self.pwm_servo.ChangeDutyCycle(angle)
+
+    def pwm_speed(self, value):
         """
         get pwn value and scale it for analog stick
         :param pwm value:
         """
 
         # 255/12.5 = 20.4
-        if not half:
-            scaled_value = float(value / 20.4)
-            print("pwm speed controll gpio scaled value ", scaled_value)
-            self.pwm_servo.ChangeDutyCycle(scaled_value)
-        else:
-            scaled_value = float(value / 10.2)
-            print("pwm speed controll gpio scaled value ", scaled_value)
-            self.pwm_servo.ChangeDutyCycle(scaled_value)
-
-
+        # 255/180  = 1,416666666666667
+        scaled_value = float(value / 1,416666666666667)
+        print("pwm speed controll gpio scaled value ", scaled_value)
+        return scaled_value
 
     def half_value_analog(self, value):
         return value-(value/2)
+
     def move_servo(self, value):
         """
         get scaled value and set servo on this value

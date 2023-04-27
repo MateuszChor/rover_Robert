@@ -43,22 +43,29 @@ def motor_move(postion, value):
         # motor.stop()
 
 
-def servo_move(servo, half=False):
+def servo_move(servo, sleep_postion):
     if event.value not in range(96, 146):
-        servo.pwm_speed(event.value, half)
+        scaled_value = servo.pwm_speed(event.value)
         # TODO  make it simpler scale middle center
+        servo.set_angle(scaled_value)
 
     else:
         print("don't move with analog")
 
-        if half:
+        if sleep_postion == "center":
             servo.center()
             print("center")
 
-        elif not half:
-            print("center")
+        elif sleep_postion == "max":
+            print("max")
             servo.max_value()
 
+        elif sleep_postion == "min":
+            print("min")
+            servo.min_value()
+
+        else:
+            pass
 
 status_cross_button = False
 
@@ -83,9 +90,9 @@ for event in gamepad.read_loop():
             if event.code in AXIS_CODE:
                 axis_name = AXIS_CODE[event.code]
                 if axis_name == "Right stick vertical":
-                    servo_move(servo_rotate_27)
+                    servo_move(servo_rotate_27, "center", )
                 elif axis_name == "Left stick vertical":
-                    servo_move(servo_tilt_17, True)
+                    servo_move(servo_tilt_17, "min")
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
