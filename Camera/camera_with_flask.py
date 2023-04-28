@@ -20,7 +20,7 @@ def video_stream():
             frame = buffer.tobytes()
             yield (b' --frame\r\n' b'Content-type: imgae/jpeg\r\n\r\n' + frame +b'\r\n')
 
-@app.route('/robert_eye')
+@app.route('/eye')
 def camera():
     return render_template('camera.html')
 
