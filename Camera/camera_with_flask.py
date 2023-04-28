@@ -12,7 +12,7 @@ def video_stream():
         ret, frame = video.read()
 
         if not ret:
-            break;
+            break
 
         else:
             ret, buffer = cv2.imencode('.jpeg', frame)
