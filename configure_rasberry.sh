@@ -20,8 +20,9 @@ sudo apt-get install bluetooth bluez blueman
 sudo bluetoothctl <<EOF
 agent on
 default-agent
-scan on
-pair 00:1A:7D:DA:71:11
+mac_address=$(scan on)
+# pair 00:1A:7D:DA:71:11
+pair mac_address
 scan off
 exit
 EOF
@@ -30,10 +31,10 @@ if [ $? -eq 0 ]; then
     echo "Find and add ps3 pad ."
 else
     echo "Error bad ps3 mac address or "
-
+fi
 
 # list all connected device 
-# ls /dev/input
+ls /dev/input
 # cat /dev/input/event1
 
 # PYTHON dependencies
