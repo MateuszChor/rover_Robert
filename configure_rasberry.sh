@@ -1,6 +1,12 @@
 sudo apt update
 sudo apt upgrade
 
+# for temperature check from terminal type sensors to check cpu temp
+sudo apt install lm-sensors
+sudo sensors-detect
+# sudo systemctl restart kmod
+
+
 # ps3 detect address with usb cable
 sudo apt install libusb-dev
 mkdir ~/sixpair
