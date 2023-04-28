@@ -3,9 +3,10 @@ from controll_gpio import motor, servo
 from evdev import InputDevice, ecodes
 from codes_dict import AXIS_CODE, BUTTON_CODE
 
+# TODO FileNotFoundError: [Errno 2] No such file or directory: '/dev/input/event1' handle power off ps3 pad on start error
 gamepad = InputDevice('/dev/input/event1')
 motor = motor()
-# servo_tilt_17 = servo(17, 40)
+servo_tilt_17 = servo(17, 40)
 servo_rotate_27 = servo(27, 0)
 
 
@@ -30,12 +31,13 @@ def motor_move(position, value):
 
         elif position == "vertical":
             if value < 96:
+                print("backward")
+                motor.backward()
+
+            elif value > 146:
                 print("forward")
                 motor.forward()
 
-            elif value > 146:
-                print("backward")
-                motor.backward()
             else:
                 motor.stop()
     finally:
@@ -94,7 +96,7 @@ for event in gamepad.read_loop():
                     servo_move(servo_rotate_27, "center", )
                 elif axis_name == "Left stick vertical":
                     pass
-                    # servo_move(servo_tilt_17, "min")
+                    servo_move(servo_tilt_17, "min")
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
