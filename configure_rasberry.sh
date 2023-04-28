@@ -33,14 +33,9 @@ else
 
 
 # list all connected device 
-ls /dev/input
-
-# # for test 
+# ls /dev/input
 # cat /dev/input/event1
 
-
-
-# PYTHON dependecies
+# PYTHON dependencies
 # tool for handle ps3 events
 sudo apt-get install python3-evdev
-
