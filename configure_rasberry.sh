@@ -20,9 +20,7 @@ sudo apt-get install bluetooth bluez blueman
 sudo bluetoothctl <<EOF
 agent on
 default-agent
-mac_address=$(scan on)
-# pair 00:1A:7D:DA:71:11
-pair mac_address
+pair 00:1A:7D:DA:71:11
 scan off
 exit
 EOF
