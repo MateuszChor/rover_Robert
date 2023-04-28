@@ -31,13 +31,12 @@ def motor_move(position, value):
 
         elif position == "vertical":
             if value < 96:
-                print("backward")
-                motor.backward()
-
-            elif value > 146:
                 print("forward")
                 motor.forward()
 
+            elif value > 146:
+                print("backward")
+                motor.backward()
             else:
                 motor.stop()
     finally:

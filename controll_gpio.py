@@ -38,13 +38,13 @@ class motor:
         elif scaled_value > 52:
             self.pwm_motor.ChangeDutyCycle(scaled_value)
 
-    def forward(self):
+    def backward(self):
         GPIO.output(self.in1, GPIO.HIGH)
         GPIO.output(self.in2, GPIO.LOW)
         GPIO.output(self.in3, GPIO.HIGH)
         GPIO.output(self.in4, GPIO.LOW)
 
-    def backward(self):
+    def forward(self):
         GPIO.output(self.in1, GPIO.LOW)
         GPIO.output(self.in2, GPIO.HIGH)
         GPIO.output(self.in3, GPIO.LOW)
