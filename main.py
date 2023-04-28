@@ -15,16 +15,17 @@ def motor_move(position, value):
     :str(horizontal or vertical) position:
     :int value
     """
-    motor.pwm_speed(value)
 
     try:
         if position == "horizontal":
             if value < 96:
                 print("left")
+                motor.pwm_speed(value)
                 motor.turn_right()
 
             elif value > 146:
                 print("right")
+                motor.pwm_speed(value)
                 motor.turn_left()
             else:
                 motor.stop()
@@ -32,10 +33,12 @@ def motor_move(position, value):
         elif position == "vertical":
             if value < 96:
                 print("forward")
+                motor.pwm_speed(value)
                 motor.forward()
 
             elif value > 146:
                 print("backward")
+                motor.pwm_speed(value)
                 motor.backward()
             else:
                 motor.stop()
