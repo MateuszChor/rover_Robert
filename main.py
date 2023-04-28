@@ -8,16 +8,16 @@ motor = motor()
 # servo_tilt_17 = servo(17, 40)
 servo_rotate_27 = servo(27, 0)
 
-def motor_move(postion, value):
+
+def motor_move(position, value):
     """
-    :param postion:
-    :param postion vertical or horizontal:
-    :return:
+    :str(horizontal or vertical) position:
+    :int value
     """
     motor.pwm_speed(value)
 
     try:
-        if postion == "horizontal":
+        if position == "horizontal":
             if value < 96:
                 print("left")
                 motor.turn_right()
@@ -28,7 +28,7 @@ def motor_move(postion, value):
             else:
                 motor.stop()
 
-        elif postion == "vertical":
+        elif position == "vertical":
             if value < 96:
                 print("forward")
                 motor.forward()
@@ -43,29 +43,30 @@ def motor_move(postion, value):
         # motor.stop()
 
 
-def servo_move(servo, sleep_postion):
+def servo_move(servo_object, sleep_position):
     if event.value not in range(96, 146):
-        scaled_value = servo.pwm_speed(event.value)
+        scaled_value = servo_object.pwm_speed(event.value)
         # TODO  make it simpler scale middle center
-        servo.set_angle(scaled_value)
+        servo_object.set_angle(scaled_value)
 
     else:
         print("don't move with analog")
 
-        if sleep_postion == "center":
-            servo.center()
+        if sleep_position == "center":
+            servo_object.center()
             print("center")
 
-        elif sleep_postion == "max":
+        elif sleep_position == "max":
             print("max")
-            servo.max_value()
+            servo_object.max_value()
 
-        elif sleep_postion == "min":
+        elif sleep_position == "min":
             print("min")
-            servo.min_value()
+            servo_object.min_value()
 
         else:
             pass
+
 
 status_cross_button = False
 

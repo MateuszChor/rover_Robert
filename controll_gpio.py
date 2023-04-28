@@ -28,12 +28,12 @@ class motor:
 
         # print(value)
         scaled_value = int(value / 255)
-        #print(scaled_value)
+        # print(scaled_value)
 
         if scaled_value < 48:
             scaled_value = 100 - scaled_value
             self.pwm_motor.ChangeDutyCycle(scaled_value)
-            #print("2 way ", scaled_value)
+            # print("2 way ", scaled_value)
 
         elif scaled_value > 52:
             self.pwm_motor.ChangeDutyCycle(scaled_value)
@@ -83,7 +83,7 @@ class servo:
         self.pwm_servo.start(start_at)
 
     def set_angle(self, angle):
-        angle = (2+(angle/18))
+        angle = (2 + (angle / 18))
         self.pwm_servo.ChangeDutyCycle(angle)
 
     def pwm_speed(self, value):
@@ -94,12 +94,12 @@ class servo:
 
         # 255/12.5 = 20.4
         # 255/180  = 1,416666666666667
-        scaled_value = float(value / 1,416666666666667)
-        print("pwm speed controll gpio scaled value ", scaled_value)
+        scaled_value = float(value / 1.416666666666667)
+        print("pwm speed control gpio scaled value ", scaled_value)
         return scaled_value
 
     def half_value_analog(self, value):
-        return value-(value/2)
+        return value - (value / 2)
 
     def move_servo(self, value):
         """
@@ -117,7 +117,6 @@ class servo:
 
     def max_value(self):
         self.pwm_servo.ChangeDutyCycle(12.5)
-
 
     def clean_gpio(self):
         GPIO.clenup()
