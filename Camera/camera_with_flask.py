@@ -15,11 +15,12 @@ def video_stream():
             break
 
         else:
+            frame = cv2.flip(frame, -1)
             ret, buffer = cv2.imencode('.jpeg', frame)
             frame = buffer.tobytes()
             yield (b' --frame\r\n' b'Content-type: imgae/jpeg\r\n\r\n' + frame +b'\r\n')
 
-@app.route('/camera')
+@app.route('/robert_eye')
 def camera():
     return render_template('camera.html')
 
