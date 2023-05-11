@@ -15,7 +15,7 @@ class HC_SR04_Thread(threading.Thread):
         self.distance = 0
         self.running = False
 
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.trig_pin, GPIO.OUT)
         GPIO.setup(self.echo_pin, GPIO.IN)
 
