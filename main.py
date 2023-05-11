@@ -1,5 +1,6 @@
 from controll_gpio import motor, servo
 from Sensors.distan_sensors import HC_SR04_Thread
+from Sensors.led import LedControl
 from evdev import InputDevice, ecodes
 from codes_dict import AXIS_CODE, BUTTON_CODE
 
@@ -8,6 +9,8 @@ gamepad = InputDevice('/dev/input/event1')
 motor = motor()
 servo_tilt_17 = servo(17, 40)
 servo_rotate_27 = servo(27, 0)
+
+camera_led = LedControl(9)
 
 hc_sensor1 = HC_SR04_Thread(18, 23)
 hc_sensor1.start()
@@ -86,14 +89,22 @@ for event in gamepad.read_loop():
             # print(button_name + " " + ("pressed" if event.value else "released"))
 
             if button_name == "Cross" and event.value == 1:
-                print(" press")
+                print("cross press")
 
             elif button_name == "Cross" and event.value == 0:
-                print(" no press")
+                print("cross no press")
                 if not status_cross_button:
                     status_cross_button = True
                 else:
                     status_cross_button = False
+
+            if button_name == "Circle" and event.value == 1:
+                print("circle press")
+                camera_led.turn_on()
+
+            elif button_name == "Circle" and event.value == 0:
+                print("circle no press")
+                camera_led.turn_off()
 
         if status_cross_button:
             if event.code in AXIS_CODE:
