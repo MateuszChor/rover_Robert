@@ -100,11 +100,22 @@ for event in gamepad.read_loop():
 
             if button_name == "Circle" and event.value == 1:
                 print("circle press")
-                camera_led.turn_on()
+                # camera_led.turn_on()
 
             elif button_name == "Circle" and event.value == 0:
                 print("circle no press")
-                camera_led.turn_off()
+                # camera_led.turn_off()
+
+                if not status_circle_button:
+                    status_circle_button = True
+                else:
+                    status_circle_button = False
+
+        if status_circle_button:
+            camera_led.turn_on()
+
+        elif not status_circle_button:
+            camera_led.turn_off()
 
         if status_cross_button:
             if event.code in AXIS_CODE:
