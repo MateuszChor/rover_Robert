@@ -1,5 +1,5 @@
 from controll_gpio import motor, servo
-
+from Sensors.distan_sensors import HC_SR04_Thread
 from evdev import InputDevice, ecodes
 from codes_dict import AXIS_CODE, BUTTON_CODE
 
@@ -9,6 +9,8 @@ motor = motor()
 servo_tilt_17 = servo(17, 40)
 servo_rotate_27 = servo(27, 0)
 
+hc_sensor1 = HC_SR04_Thread(18, 23)
+hc_sensor1.start()
 
 def motor_move(position, value):
     """
@@ -17,6 +19,8 @@ def motor_move(position, value):
     """
 
     try:
+        distance = hc_sensor1.get_distance()
+        print(distance)
         if position == "horizontal":
             if value < 96:
                 print("left")
@@ -112,3 +116,6 @@ for event in gamepad.read_loop():
                 axis_name = AXIS_CODE[event.code]
                 motor.pwm_speed(event.value)
                 motor_move("horizontal", event.value)
+
+hc_sensor1.stop()
+hc_sensor1.join()
