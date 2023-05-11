@@ -20,6 +20,7 @@ sudo ~/sixpair/sixpair
 # bluetooth 
 sudo apt-get install bluetooth bluez blueman
 sudo bluetoothctl <<EOF
+power on
 agent on
 default-agent
 pair 00:1A:7D:DA:71:11
