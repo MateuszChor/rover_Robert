@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)   # Ustawienie trybu numeracji pinów
+GPIO.setmode(GPIO.BCM)   # Ustawienie trybu numeracji pinów
 GPIO.setup(9, GPIO.OUT)   # Ustawienie pinu 11 jako wyjście
 
 while True:
