@@ -15,6 +15,9 @@ camera_led = LedControl(9)
 hc_sensor1 = HC_SR04_Thread(18, 23)
 hc_sensor1.start()
 
+status_cross_button = False
+status_circle_button = False
+
 def motor_move(position, value):
     """
     :str(horizontal or vertical) position:
@@ -78,8 +81,6 @@ def servo_move(servo_object, sleep_position):
         else:
             pass
 
-
-status_cross_button = False
 
 for event in gamepad.read_loop():
 
