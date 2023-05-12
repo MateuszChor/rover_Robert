@@ -88,7 +88,7 @@ if __name__ == '__main__':
     pwm.setPWMFreq(50)
 
     i = 0
-    while i == 15:
+    while i < 16:
         pwm.setServoPulse(i, 500)
         print(i)
         i += 1
