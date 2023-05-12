@@ -89,7 +89,9 @@ if __name__ == '__main__':
 
     while True:
 
-        angle = input(" 500 = 0  , 2500 = 180")
+        angle = input(" 500 is 0 angle 2500 is 180 angle :")
+
+        angle = int(angle)
 
         i = 0
         while i < 16:
