@@ -90,5 +90,6 @@ if __name__ == '__main__':
     i = 0
     while i == 15:
         pwm.setServoPulse(i, 500)
+        print(i)
         i += 1
 
