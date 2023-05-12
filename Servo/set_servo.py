@@ -93,10 +93,11 @@ if __name__ == '__main__':
 
         angle = int(angle)
 
-        i = 0
-        while i < 16:
-            pwm.setServoPulse(i, angle)
-            print(" servo ", i+1, " set on value ", angle, " from 500 to 2500 ")
-            i += 1
+        servo = input("servo from 1 to 16 :")
+
+        servo = int(servo)
+
+        pwm.setServoPulse(servo+1, angle)
+        print(" servo ", servo, " set on value ", angle, " from 500 to 2500 ")
 
 
