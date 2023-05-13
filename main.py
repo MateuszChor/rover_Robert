@@ -11,7 +11,8 @@ motor = motor()
 
 camera_led = LedControl(9)
 
-Servo_hat = PCA9685
+Servo_hat = PCA9685(0x40, debug=False)
+Servo_hat.setPWMFreq(50)
 
 hc_sensor1 = HC_SR04_Thread(18, 23)
 hc_sensor1.start()
@@ -101,7 +102,7 @@ for event in gamepad.read_loop():
                     print("status servo claw move value is = :")
                     value = event.value/9.5
                     print(value)
-                    Servo_hat.setServoPulse(PCA9685, 3, value)
+                    Servo_hat.setServoPulse(3, value)
                 elif axis_name == "Left stick vertical":
                     pass
 
