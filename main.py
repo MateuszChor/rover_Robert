@@ -100,7 +100,7 @@ for event in gamepad.read_loop():
                 axis_name = AXIS_CODE[event.code]
                 if axis_name == "Right stick vertical":
                     print("status servo claw move value is = :")
-                    value = event.value * 19
+                    value = event.value * 9.5
                     print(value)
                     Servo_hat.setServoPulse(3, value)
                 elif axis_name == "Left stick vertical":
