@@ -1,4 +1,5 @@
-from controll_gpio import motor, servo
+from controll_gpio import motor
+from Servo.Servo_class import PCA9685
 from Sensors.distan_sensors import HC_SR04_Thread
 from Sensors.led import LedControl
 from evdev import InputDevice, ecodes
@@ -7,10 +8,10 @@ from codes_dict import AXIS_CODE, BUTTON_CODE
 # TODO FileNotFoundError: [Errno 2] No such file or directory: '/dev/input/event1' handle power off ps3 pad on start error
 gamepad = InputDevice('/dev/input/event1')
 motor = motor()
-servo_tilt_17 = servo(17, 40)
-servo_rotate_27 = servo(27, 0)
 
 camera_led = LedControl(9)
+
+Servo_hat = PCA9685
 
 hc_sensor1 = HC_SR04_Thread(18, 23)
 hc_sensor1.start()
@@ -57,31 +58,6 @@ def motor_move(position, value):
         # motor.stop()
 
 
-def servo_move(servo_object, sleep_position):
-    if event.value not in range(96, 146):
-        scaled_value = servo_object.pwm_speed(event.value)
-        # TODO  make it simpler scale middle center
-        servo_object.set_angle(scaled_value)
-
-    else:
-        print("don't move with analog")
-
-        if sleep_position == "center":
-            servo_object.center()
-            print("center")
-
-        elif sleep_position == "max":
-            print("max")
-            servo_object.max_value()
-
-        elif sleep_position == "min":
-            print("min")
-            servo_object.min_value()
-
-        else:
-            pass
-
-
 for event in gamepad.read_loop():
 
     if event.type == ecodes.EV_KEY or event.type == ecodes.EV_ABS:
@@ -122,10 +98,12 @@ for event in gamepad.read_loop():
             if event.code in AXIS_CODE:
                 axis_name = AXIS_CODE[event.code]
                 if axis_name == "Right stick vertical":
-                    servo_move(servo_rotate_27, "center", )
+                    print("status servo claw move value is = :")
+                    value = event.value/9.5
+                    print(value)
+                    Servo_hat.setServoPulse(PCA9685, 3, value)
                 elif axis_name == "Left stick vertical":
                     pass
-                    servo_move(servo_tilt_17, "min")
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
