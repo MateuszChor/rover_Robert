@@ -19,6 +19,7 @@ hc_sensor1.start()
 
 status_cross_button = False
 status_circle_button = False
+status_triangle_button = False
 
 def motor_move(position, value):
     """
@@ -66,28 +67,27 @@ for event in gamepad.read_loop():
             button_name = BUTTON_CODE[event.code]
             # print(button_name + " " + ("pressed" if event.value else "released"))
 
-            if button_name == "Cross" and event.value == 1:
-                print("cross press")
-
-            elif button_name == "Cross" and event.value == 0:
+            if button_name == "Cross" and event.value == 0:
                 print("cross no press")
                 if not status_cross_button:
                     status_cross_button = True
                 else:
                     status_cross_button = False
 
-            if button_name == "Circle" and event.value == 1:
-                print("circle press")
-                # camera_led.turn_on()
-
             elif button_name == "Circle" and event.value == 0:
                 print("circle no press")
                 # camera_led.turn_off()
-
                 if not status_circle_button:
                     status_circle_button = True
                 else:
                     status_circle_button = False
+
+            elif button_name == "Triangle" and event.value == 0:
+                print("Triangle no press")
+                if not status_triangle_button:
+                    status_triangle_button = True
+                else:
+                    status_triangle_button = False
 
         if status_circle_button:
             camera_led.turn_on()
@@ -104,7 +104,26 @@ for event in gamepad.read_loop():
                     print(value)
                     Servo_hat.setServoPulse(3, value)
                 elif axis_name == "Left stick vertical":
-                    pass
+                    print("status servo claw move value is = :")
+                    value = event.value * 9.5
+                    print(value)
+                    Servo_hat.setServoPulse(2, value)
+
+        elif status_triangle_button:
+            if event.code in AXIS_CODE:
+                axis_name = AXIS_CODE[event.code]
+                if axis_name == "Right stick vertical":
+                    print("status servo claw move value is = :")
+                    value = event.value * 9.5
+                    print(value)
+                    Servo_hat.setServoPulse(0, value)
+
+                elif axis_name == "Left stick vertical":
+                    print("status servo claw move value is = :")
+                    value = event.value * 9.5
+                    print(value)
+                    Servo_hat.setServoPulse(1, value)
+
 
         elif event.code in AXIS_CODE:
             axis_name = AXIS_CODE[event.code]
