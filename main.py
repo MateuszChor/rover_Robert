@@ -19,7 +19,7 @@ hc_sensor1.start()
 
 status_cross_button = False
 status_circle_button = False
-status_triangle_button = False
+status_square_button = False
 
 def motor_move(position, value):
     """
@@ -82,12 +82,12 @@ for event in gamepad.read_loop():
                 else:
                     status_circle_button = False
 
-            elif button_name == "Triangle" and event.value == 0:
-                print("Triangle no press")
-                if not status_triangle_button:
-                    status_triangle_button = True
+            elif button_name == "Square" and event.value == 0:
+                print("Square no press")
+                if not status_square_button:
+                    status_square_button = True
                 else:
-                    status_triangle_button = False
+                    status_square_button = False
 
         if status_circle_button:
             camera_led.turn_on()
@@ -109,7 +109,7 @@ for event in gamepad.read_loop():
                     print(value)
                     Servo_hat.setServoPulse(2, value)
 
-        elif status_triangle_button:
+        elif status_square_button:
             if event.code in AXIS_CODE:
                 axis_name = AXIS_CODE[event.code]
                 if axis_name == "Right stick vertical":
