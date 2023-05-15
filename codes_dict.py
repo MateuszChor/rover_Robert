@@ -1,8 +1,8 @@
 BUTTON_CODE = {
     304: "Cross",
     305: "Circle",
-    306: "Triangle",
-    307: "Square",
+    306: "Square",
+    307: "Triangle",
     308: "Left bumper",
     309: "Right bumper",
     310: "Left trigger",
